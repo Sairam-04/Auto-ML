@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>My Projects</h2>
+    <ul class="projects-container">
+        {% for i in data %}
+        <li class="project" onclick="projectHistory('{{i[0]}}')">
+            <h3>{{i[1]}}</h3>
+            <div>Created on: {{i[2]}}</div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+
+    function projectHistory(model_id) {
+        window.location.href="/model-history?model_id="+model_id;
+    }
+</script>
+
+{% endblock %}

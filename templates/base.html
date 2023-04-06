@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto ML</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="nav-block">
+        <div class="logo">
+            A Platform for Automatic ML Model Training
+        </div>
+        <ul class="navbar">
+            <li onclick="home()" class="nav-item"><a href="/">Home</a></li>
+            <li onclick="hist()" class="nav-item"><a href="/history">History</a></li>
+            <li onclick="samples()" class="nav-item"><a href="/sample-data">Sample Data</a></li>
+        </ul>
+        <div class="user">
+            <span class="username">{{username}} </span>
+            <span class="pipe"></span>
+            <span class="logout"><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></span>
+        </div>
+    </div>
+    {%block content%} {%endblock%}
+</body>
+
+<script src="../static/script.js"></script>
+
+</html>

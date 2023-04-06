@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="video">
+        <img src="../static/1.png" alt="">
+    <div>
+        <h1>Welcome, {{username}}</h1>
+        <p>To get started click on start project button below.</p>
+    </div>
+</div>
+<div class="container">
+    <h2>My Projects</h2>
+    <ul class="projects-container">
+            <li class="project new-project">
+                <h3>+</h3>
+                <div><b>Start new project</b></div>
+            </li>
+        {% for i in data %}
+        <li class="project" onclick="projectHistory('{{i[0]}}')">
+            <h3>{{i[1]}}</h3>
+            <div>Created on: {{i[2]}}</div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    ele = document.getElementsByClassName("new-project")[0]
+    ele.onclick = () => {
+        createproject()
+    }
+    function createproject() {
+        window.location.href="/create-project";
+    }
+
+    function projectHistory(model_id) {
+        window.location.href="/model-history?model_id="+model_id;
+    }
+</script>
+
+{% endblock %}

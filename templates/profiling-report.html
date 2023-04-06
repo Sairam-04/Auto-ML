@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .current {
+        background-color:  rgb(255, 255, 255) !important;
+        color: rgb(255, 140, 0) !important;
+    }
+</style>
+<div class="sidebar">
+    <div class="model-btn" onclick="modelDetails('{{model_id}}')"><i class="fa fa-file" aria-hidden="true"></i> Project Details</div>
+    <div class="model-btn" onclick="tryModel('{{model_id}}')"><i class="fa fa-file" aria-hidden="true"></i> Try Model
+    </div>
+    <div class="model-btn" onclick="deploy('{{model_id}}')"><i class="fa fa-rocket" aria-hidden="true"></i> Deploy Model</div>
+    <div class="model-btn current" onclick="report('{{model_id}}')"><i class="fa fa-file" aria-hidden="true"></i> Profiling Report</div>
+    <div class="model-btn" onclick="metrics('{{model_id}}')"><i class="fa fa-table" aria-hidden="true"></i> Metrics</div>
+</div>
+<div class="container">
+   <iframe src="http://localhost:5000/render-report" class="profiling-report" frameborder="0"></iframe>
+</div>
+
+{% endblock %}

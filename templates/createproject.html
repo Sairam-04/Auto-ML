@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    input[type="radio"]:checked + label {
+    background-color:  rgb(255, 140, 0);
+    color: #fff;
+    }
+</style>
+<div class="container">
+    <h2>Select the project type</h2>
+    <div>
+        <form action="/create-project" class="new-project-form" method="post">
+            <input type="radio" id="regression" class="task_type" name="tasktype" value="regression">
+            <label for="regression" class="task-type-label">Regression</label>
+        
+            <input type="radio" id="classification" class="task_type" name="tasktype" value="classification">
+            <label for="classification" class="task-type-label">Classification</label>
+
+            <!-- <input type="radio" id="image_classification" class="task_type" name="tasktype" value="image_classification">
+            <label for="image_classification" class="task-type-label">Image Classification</label> -->
+
+            <label for="project_name" class="project_name_label">Project Name</label>
+            <input type="text" class="project-name-input" id="project_name" name="projectname" placeholder="Project name" required>
+            <div>
+            <button type="submit" class="create-project-btn">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .current {
+        background-color:  rgb(255, 255, 255) !important;
+        color: rgb(255, 140, 0) !important;
+    }
+</style>
+<div class="sidebar">
+    <div class="model-btn" onclick="modelDetails('{{model_id}}')"><i class="fa fa-file" aria-hidden="true"></i> Project Details</div>
+    <div class="model-btn" onclick="tryModel('{{model_id}}')"><i class="fa fa-file" aria-hidden="true"></i> Try Model
+    </div>
+    <div class="model-btn current" onclick="deploy('{{model_id}}')"><i class="fa fa-rocket" aria-hidden="true"></i> Deploy Model</div>
+    <div class="model-btn" onclick="report('{{model_id}}')"><i class="fa fa-file" aria-hidden="true"></i> Profiling Report</div>
+    <div class="model-btn" onclick="metrics('{{model_id}}')"><i class="fa fa-table" aria-hidden="true"></i> Metrics</div>
+</div>
+<div class="container">
+
+    <div class="deploy">
+        {% if status %}
+        <h3>Project deployed successfully</h3>
+        <a href="/deployments?model_id={{model_id}}" target="_blank">Click Here</a>
+        <form action="/deploy?model_id={{model_id}}&status=no" method="post">
+            <button type="submit" class="start-training-btn">Stop</button>
+        </form>
+    {% else %} 
+        <h3>Project not yet deployed</h3>
+        <form action="/deploy?model_id={{model_id}}&status=yes" method="post">
+            <button type="submit" class="start-training-btn">Deploy</button>
+        </form>
+    {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

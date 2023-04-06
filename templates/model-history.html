@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .current {
+        background-color:  rgb(255, 255, 255) !important;
+        color: rgb(255, 140, 0) !important;
+    }
+</style>
+<div class="sidebar">
+    <div class="model-btn current" onclick="modelDetails('{{model_id}}')"><i class="fa fa-file" aria-hidden="true"></i> Project Details</div>
+    <div class="model-btn" onclick="tryModel('{{model_id}}')"><i class="fa fa-file" aria-hidden="true"></i> Try Model
+    </div>
+    <div class="model-btn" onclick="deploy('{{model_id}}')"><i class="fa fa-rocket" aria-hidden="true"></i> Deploy Model</div>
+    <div class="model-btn" onclick="report('{{model_id}}')"><i class="fa fa-file" aria-hidden="true"></i> Profiling Report</div>
+    <div class="model-btn" onclick="metrics('{{model_id}}')"><i class="fa fa-table" aria-hidden="true"></i> Metrics</div>
+</div>
+
+<div class="model-container">
+
+    <div class="model-data">
+        <div class="model-padding model-name">
+            <h3>{{project_name}}</h3>
+            <span>Created on {{date}}</span>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Project ID</h4>
+            <div class="inline model-detail">{{model_id}}</div>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Created By</h4>
+            <div class="inline model-detail">{{createdby}}</div>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Model Type</h4>
+            <div class="inline model-detail">{{model_type}}</div>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Algorithm</h4>
+            <div class="inline model-detail">{{model_name}}</div>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Input Parameters</h4>
+            <div class="inline model-detail">
+                <ol class="params-list">
+                    {% for i in params %}
+                    <li>{{i}}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Output Parameter</h4>
+            <div class="inline model-detail">{{output_name}}</div>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Attachments</h4>
+            <div class="inline model-detail downloads">
+                <div class="">
+                    <span><i class="fa fa-paperclip" aria-hidden="true"></i> Input Data </span>
+                    <span>
+                        <a href="/download?model_id={{model_id}}&data=input" class="download-btn">Download</a>
+                    </span>
+                </div>
+                <div class="br-top">
+                    <span><i class="fa fa-paperclip" aria-hidden="true"></i> Output Data </span>
+                    <span>
+                        <a href="/download?model_id={{model_id}}&data=output" class="download-btn">Download</a>
+                    </span>
+                </div>
+                <div class="br-top">
+                    <span><i class="fa fa-paperclip" aria-hidden="true"></i> Model File </span>
+                    <span>
+                        <a href="/download?model_id={{model_id}}&data=model" class="download-btn">Download</a>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="data-upload">
+        <div class="try-model-container">
+            <div class="container">
+                <h2>Try Model</h2>
+                <form action="/deployments?model_id={{model_id}}" method="post">
+                    {%for i in inputs_data%}
+                    <label for="{{i}}" class="try-model-label">{{i}}</label>
+                    <input type="text" class="try-model-input" name="{{i}}" placeholder="{{i}}">
+                    {%endfor%}
+                    <br><button type="submit" class="create-project-btn">Predict</button>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="line"></div>
+        <div class="instructions">
+
+            {% if encodings %}
+            <div class="model-data">
+                <div class="model-padding model-name">
+                    <h3>Instructions</h3>
+                </div>
+                {% for param in encodings %}
+                <div class="rt flex flex-row model-padding br-top">
+                    <h4 class="inline model-detail">{{param[0]}}</h4>
+                    <div class="inline model-detail">
+                        <ol>
+                            {% for key, value in param[1].items() %}
+                            <li><b>{{key}}</b> : {{value}}</li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <h2>Prediction: {{prediction}}</h2>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock%}

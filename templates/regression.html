@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+
+    <div id="loader">
+    </div>
+
+    <h2>Upload Data</h2>
+    <div class="data-upload">
+        <div>
+            {% if toast=="success" %}
+            <div class="">
+                <h3>Data uploaded successfully</h3>
+            </div>
+            {% endif %}
+            <form action="/upload?model_id={{model_id}}&model_type=regression" method="post" enctype="multipart/form-data">
+                <label for="input-data" class="drop-container">
+                    <span class="drop-title">Drop Input Data</span>
+                    or
+                    <input type="file" class="data-input" id="input-data" name="inputs" required>
+                </label>
+                <label for="output-data" class="drop-container">
+                    <span class="drop-title">Drop Output Data</span>
+                    or
+                    <input type="file" class="data-input" id="output-data" name="outputs" required>
+                </label>
+                <button type="submit" class="start-training-btn"> Upload
+                </button>
+            </form>
+            {% if classes %}
+            <form action="/train?model_id={{model_id}}&model_type={{model_type}}" method="post">
+                <div class="algorithm">
+                    <label class=""><b>Select Algorithm</b></label>
+                    <select class="form-control" name="model">
+                        <option value="linear_reg">Linear Regression</option>
+                        <option value="decision_tree_reg">Decision Tree Regressor</option>
+                        <option value="random_forest_reg">Random Forest Regressor</option>
+                        <option value="svm_reg">SVM Regressor</option>
+                        <option value="knn_reg">KNN Regressor</option>
+                      </select>
+                </div>
+                <button type="submit" id="r1">
+                </button>
+            </form>
+            {% endif %}
+
+        </div>
+
+        <div class="line"></div>
+        <div class="instructions instructions2">
+            <div>
+                <h1>Instructions</h1><br>
+                <div>Upload the input and output data in a CSV file.</div>
+                <br>
+                <div>
+                    <div><strong>Input Data Format:</strong></div>
+                    First row must contain the feature name, and next rows should contain the data.
+                    Note: Can contain any no. of columns.
+                </div>
+                <br>
+                <div>
+                    <div><strong>Output Data Format:</strong> </div>
+                    First row must contain the output name and next rows should contain the output labels.
+                    Note: This must contain one column only.
+                </div>
+                <br>
+                <div>After uploading data select the required ML algorithm and click on start training.</div>
+            </div>
+        </div>
+    </div>
+    <div class="start-training">
+        <label for="r1" class="start-training-btn">Start Training <i class="fa fa-cogs" aria-hidden="true"></i></label>
+    </div>
+</div>
+<script type="text/javascript">
+    function loading() {
+        $("#loader").show();
+        $("#content").hide();
+    }
+</script>
+{% endblock %}
+
+
+
+

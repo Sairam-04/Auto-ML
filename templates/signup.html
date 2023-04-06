@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto ML</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/login-style.css">
+</head>
+
+<body>
+    <div class="nav-block-login">
+        <div class="logo">
+            A Platform for Automatic ML Model Training
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="container" id="container">
+            <div class="form-container sign-in-container">
+                <form action="{{url_for('signup')}}" method="post">
+                    <h1>Sign Up</h1>
+                    <input type="text" name="username" placeholder="username" />
+                    <div id="" class="form-text" style="color:red;">{{username_taken_msg}}</div>
+                    <input type="password" name="password" placeholder="Password" />
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-right">
+                        <div style="text-align:center;">
+                            <h1 style="padding:0; margin:0;">Upload</h1>
+                            <h1 style="padding:0; margin:0;">Train</h1>
+                            <h1 style="padding:0; margin:0;">Deploy</h1>
+                        </div>
+                        <p>Train and deploy your ML model in few clicks</p>
+                        <button class="ghost" id="signUp" onclick="login()">Log In</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="../static/script.js"></script>
+
+</html>

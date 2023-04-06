@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .current {
+        background-color:  rgb(255, 255, 255) !important;
+        color: rgb(255, 140, 0) !important;
+    }
+</style>
+<div class="sidebar">
+    <div class="model-btn" onclick="modelDetails('{{model_id}}')"><i class="fa fa-file" aria-hidden="true"></i> Project Details</div>
+    <div class="model-btn" onclick="tryModel('{{model_id}}')"><i class="fa fa-file" aria-hidden="true"></i> Try Model
+    </div>
+    <div class="model-btn" onclick="deploy('{{model_id}}')"><i class="fa fa-rocket" aria-hidden="true"></i> Deploy Model</div>
+    <div class="model-btn" onclick="report('{{model_id}}')"><i class="fa fa-file" aria-hidden="true"></i> Profiling Report</div>
+    <div class="model-btn current" onclick="metrics('{{model_id}}')"><i class="fa fa-table" aria-hidden="true"></i> Metrics</div>
+</div>
+<div class="model-container">
+
+    <div class="model-data">
+        <div class="model-padding model-name">
+            <h3>Metrics</h3>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Model ID</h4>
+            <div class="inline model-detail">{{model_id}}</div>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Model Type</h4>
+            <div class="inline model-detail">{{model_type}}</div>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Algorithm</h4>
+            <div class="inline model-detail">{{model_name}}</div>
+        </div>
+        {% if classify %}
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Accuracy</h4>
+            {% set acc = metrics_data["acc"] | string() %}
+            <div class="inline model-detail">{{acc[:4]}}</div>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Precision</h4>
+            {% set prec = metrics_data["prec"] | string() %}
+            <div class="inline model-detail">{{prec[:4]}}</div>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Recall</h4>
+            {% set rec = metrics_data["rec"] | string() %}
+            <div class="inline model-detail">{{rec[:4]}}</div>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">F1 Score</h4>
+            {% set f1 = metrics_data["f1"] | string() %}
+            <div class="inline model-detail">{{f1[:4]}}</div>
+        </div>
+
+        {% else %}
+
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Mean Absolute Error</h4>
+            {% set mae = metrics_data["mae"] | string() %}
+            <div class="inline model-detail">{{mae[:10]}}</div>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Mean Squared Error</h4>
+            {% set mse = metrics_data["mse"] | string() %}
+            <div class="inline model-detail">{{mse[:10]}}</div>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">Root Mean Squared Error</h4>
+            {% set rmse = metrics_data["rmse"] | string() %}
+            <div class="inline model-detail">{{rmse[:10]}}</div>
+        </div>
+        <div class="rt flex flex-row model-padding br-top">
+            <h4 class="inline model-detail">R2 Score</h4>
+            {% set r2 = metrics_data["r2"] | string() %}
+            <div class="inline model-detail">{{r2[:10]}}</div>
+        </div>
+
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
